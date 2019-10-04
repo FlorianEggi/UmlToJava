@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Path:" Margin="49,37,710.043,0" VerticalAlignment="Top" RenderTransformOrigin="-0.007,0.494"/>
+        <TextBox 
+            Name="txbName"  Height="23" Margin="148,41,34.043,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button 
+            Name="btnConvert" Content="Convert" HorizontalAlignment="Left" Margin="684,321,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock
+            Name="txblLogs" Margin="49,366,34.043,0" TextWrapping="Wrap" Text="Logs" VerticalAlignment="Top" Height="24"/>
+        <TextBox 
+            Name="txtbDragDrop" Margin="49,88,34.043,124.73" TextWrapping="Wrap" Text="Put your File here"
+            PreviewDragEnter="TextBox_PreviewDragEnter" PreviewDragOver="TextBox_PreviewDragEnter" PreviewDrop="TextBox_PreviewDrop" Drop="ItemDropped" />
     </Grid>
 </Window>
