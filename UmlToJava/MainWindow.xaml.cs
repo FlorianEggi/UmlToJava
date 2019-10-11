@@ -20,50 +20,60 @@ namespace UmlToJava
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow() => InitializeComponent();
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
         }
 
-        private void TextBox_PreviewDragEnter(object sender, DragEventArgs e)
+        private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            //e.Effects = (DragDropEffects)cboDropEffects.SelectedItem;
-            //if (chkHandled.IsChecked.HasValue)
-            //{
-            //    e.Handled = chkHandled.IsChecked.Value;
-            //}
+            // Store the mouse position
+            //startPoint = e.GetPosition(null);
         }
 
-        private void TextBox_PreviewDrop(object sender, DragEventArgs e)
+        private void List_MouseMove(object sender, MouseEventArgs e)
         {
-            object text = e.Data.GetData(DataFormats.FileDrop);
-            TextBox tb = sender as TextBox;
-            if (tb != null)
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            //Vector diff = startPoint - mousePos;
+
+            //if (e.LeftButton == MouseButtonState.Pressed &&
+                //Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                //Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
             {
-                tb.Text = string.Format("{0}", ((string[])text)[0]);
+                // Get the dragged ListViewItem
+                ListView listView = sender as ListView;
+                ListViewItem listViewItem =
+                    FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
+
+                // Find the data behind the ListViewItem
+                //Contact contact = (Contact)listView.ItemContainerGenerator.
+                    //ItemFromContainer(listViewItem);
+
+                // Initialize the drag & drop operation
+                //DataObject dragData = new DataObject("myFormat", contact);
+                //DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
             }
         }
 
-        private void ItemDropped(object sender, DragEventArgs e)
+        private static T FindAnchestor<T>(DependencyObject current)
+    where T : DependencyObject
         {
-            if(e.Data.GetDataPresent(DataFormats.FileDrop))
+            do
             {
-                string[] dropPath = e.Data.GetData(DataFormats.FileDrop, true) as string[];
-                foreach (string dropfilepath in dropPath)
+                if (current is T)
                 {
-                    var listBoxItem = new ListBoxItem();
-                    if (System.IO.Path.GetExtension(dropfilepath).Contains(".txt"))
-                    {
-                        listBoxItem.Content = System.IO.Path.GetFileNameWithoutExtension(dropfilepath);
-                        listBoxItem.ToolTip = dropPath;
-                        txtbDragDrop.Text = (string)listBoxItem.Content;
-                    }
-
+                    return (T)current;
                 }
+                current = VisualTreeHelper.GetParent(current);
             }
+            while (current != null);
+            return null;
         }
+
+
     }
 }
 
-    
+

@@ -5,17 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UmlToJava"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Label Content="Path:" Margin="49,37,710.043,0" VerticalAlignment="Top" RenderTransformOrigin="-0.007,0.494"/>
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="400">
+    <Grid Margin="0,0,0,0">
+        <Label Content="Path:" Margin="0,0,350.183,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="43" Height="28" Panel.ZIndex="-1"/>
+        <Button Content="Button" Height="28" Width="25" Margin="358,0,0,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Left" Panel.ZIndex="-1"/>
         <TextBox 
-            Name="txbName"  Height="23" Margin="148,41,34.043,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            Name="txbName"  Height="28" Margin="48,10,44.14,0" TextWrapping="Wrap" VerticalAlignment="Top" Panel.ZIndex="-1"/>
         <Button 
-            Name="btnConvert" Content="Convert" HorizontalAlignment="Left" Margin="684,321,0,0" VerticalAlignment="Top" Width="75"/>
+            Name="btnConvert" Content="Convert" Margin="0,0,10.14,106" RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="373"/>
         <TextBlock
-            Name="txblLogs" Margin="49,366,34.043,0" TextWrapping="Wrap" Text="Logs" VerticalAlignment="Top" Height="24"/>
+            Name="txblLogs" Margin="10,336,10.14,10" TextWrapping="Wrap" Text="Logs"/>
         <TextBox 
-            Name="txtbDragDrop" Margin="49,88,34.043,124.73" TextWrapping="Wrap" Text="Put your File here"
-            PreviewDragEnter="TextBox_PreviewDragEnter" PreviewDragOver="TextBox_PreviewDragEnter" PreviewDrop="TextBox_PreviewDrop" Drop="ItemDropped" />
+            Name="txtbDragDrop"
+            Margin="10,45,10.14,155"  
+            Text="Put your File here"
+            
+    />
     </Grid>
 </Window>
