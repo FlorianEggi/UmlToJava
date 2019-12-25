@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="400">
-    <Grid Margin="0,0,0,0">
-        <Label Content="Path:" Margin="0,0,350.183,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="43" Height="28" Panel.ZIndex="-1"/>
-        <Button Content="Button" Height="28" Width="25" Margin="358,0,0,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Left" Panel.ZIndex="-1"/>
+
+    <Grid Margin="0,0,0,0" AllowDrop="True">
+        <Label Content="Path:" Margin="0,0,350.183,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="43" Height="28"/>
+        <Button Content="Button" Height="28" Width="25" Margin="358,0,0,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
         <TextBox 
-            Name="txbName"  Height="28" Margin="48,10,44.14,0" TextWrapping="Wrap" VerticalAlignment="Top" Panel.ZIndex="-1"/>
+            Name="txbName"  Height="28" Margin="48,10,44.14,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button 
             Name="btnConvert" Content="Convert" Margin="0,0,10.14,106" RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="373"/>
         <TextBlock
@@ -20,7 +21,9 @@
             Name="txtbDragDrop"
             Margin="10,45,10.14,155"  
             Text="Put your File here"
-            
+            Drop="TxtbDragDrop_Drop"
+            AllowDrop="True"
+            DragEnter="TxtbDragDrop_DragEnter"
     />
     </Grid>
 </Window>

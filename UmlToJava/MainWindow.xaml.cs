@@ -24,55 +24,26 @@ namespace UmlToJava
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-        }
+            }
 
-        private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TxtbDragDrop_Drop(object sender, DragEventArgs e)
         {
-            // Store the mouse position
-            //startPoint = e.GetPosition(null);
-        }
-
-        private void List_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Get the current mouse position
-            Point mousePos = e.GetPosition(null);
-            //Vector diff = startPoint - mousePos;
-
-            //if (e.LeftButton == MouseButtonState.Pressed &&
-                //Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-                //Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
+            if (e.Data.GetDataPresent("*.graphml"))
             {
-                // Get the dragged ListViewItem
-                ListView listView = sender as ListView;
-                ListViewItem listViewItem =
-                    FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
 
-                // Find the data behind the ListViewItem
-                //Contact contact = (Contact)listView.ItemContainerGenerator.
-                    //ItemFromContainer(listViewItem);
-
-                // Initialize the drag & drop operation
-                //DataObject dragData = new DataObject("myFormat", contact);
-                //DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+                //Contact contact = e.Data.GetData("myFormat") as Contact;
+                //ListView listView = sender as ListView;
+                //listView.Items.Add(contact);
             }
         }
 
-        private static T FindAnchestor<T>(DependencyObject current)
-    where T : DependencyObject
+        private void TxtbDragDrop_DragEnter(object sender, DragEventArgs e)
         {
-            do
+            if (!e.Data.GetDataPresent("*.graphml") || sender == e.Source)
             {
-                if (current is T)
-                {
-                    return (T)current;
-                }
-                current = VisualTreeHelper.GetParent(current);
+                e.Effects = DragDropEffects.None;
             }
-            while (current != null);
-            return null;
         }
-
-
     }
 }
 
