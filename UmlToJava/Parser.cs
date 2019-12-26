@@ -18,6 +18,16 @@ namespace UmlToJava
 
         }
 
+        public List<Package> parse()
+        {
+            List<Package> packages = new List<Package>();
+            string[] lines = ReadXmlFile();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if(lines[i].Contains("AttributeLabel")) Console.WriteLine(lines[i]);
+            }
+        }
+
         private string[] ReadXmlFile()
         {
             string[] lines = File.ReadAllLines(xmlPath);
