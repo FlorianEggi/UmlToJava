@@ -20,12 +20,15 @@ namespace UmlToJava
 
         public List<Package> parse()
         {
+            Package currentPack = new Package();
+            Clazz currentClazz = new Clazz();
             List<Package> packages = new List<Package>();
             string[] lines = ReadXmlFile();
             for (int i = 0; i < lines.Length; i++)
             {
                 if(lines[i].Contains("AttributeLabel")) Console.WriteLine(lines[i]);
             }
+            return packages;
         }
 
         private string[] ReadXmlFile()
