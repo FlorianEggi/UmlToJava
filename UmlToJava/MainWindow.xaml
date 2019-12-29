@@ -9,21 +9,28 @@
         Title="MainWindow" Height="450" Width="400">
 
     <Grid Margin="0,0,0,0" AllowDrop="True">
-        <Label Content="Path:" Margin="0,0,350.183,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="43" Height="28"/>
-        <Button Content="Button" Height="28" Width="25" Margin="358,0,0,385.73" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Label Content="Path:" Margin="0,0,347.183,336.73" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="43" Height="28"/>
+        <Button Name="btnExplore" Content="..." Height="28" Width="25" Margin="357,0,0,338.73" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                AllowDrop="False" Click="BtnExplore_Click"/>
         <TextBox 
-            Name="txbName"  Height="28" Margin="48,10,44.14,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            Name="txbName" Height="28" Margin="51,56,41.183,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button 
-            Name="btnConvert" Content="Convert" Margin="0,0,10.14,106" RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="373"/>
+            Name="btnConvert" Content="Convert" Margin="0,0,10.14,106" 
+            RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Bottom" 
+            HorizontalAlignment="Right" Width="373"
+            AllowDrop="False"/>
         <TextBlock
-            Name="txblLogs" Margin="10,336,10.14,10" TextWrapping="Wrap" Text="Logs"/>
-        <TextBox 
+            Name="txblLogs" Margin="10,336,10.14,10" TextWrapping="Wrap" Text="Logs" AllowDrop="False"/>
+        <TextBlock 
+            AllowDrop="True"
             Name="txtbDragDrop"
-            Margin="10,45,10.14,155"  
+            Margin="10,110,10.183,154.73"  
             Text="Put your File here"
             Drop="TxtbDragDrop_Drop"
-            AllowDrop="True"
             DragEnter="TxtbDragDrop_DragEnter"
     />
+        <Label Content="Package Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+            Name="txtPackage" HorizontalAlignment="Left" Height="23" Margin="96,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="286"/>
     </Grid>
 </Window>
