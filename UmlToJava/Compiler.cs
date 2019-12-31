@@ -9,26 +9,30 @@ namespace UmlToJava
 {
     class Compiler
     {
-        string subpath;
         string actpath;
         public void Compile(Package[] packages, string path)
         {
-            subpath = path;
-            actpath = subpath;
             foreach (var package in packages)
             {
-                string pathstring = System.IO.Path.Combine(path, package.name);
-                actpath = subpath;
+                string pathstring = Path.Combine(path, package.name);
+                actpath = pathstring;
                 foreach (var clazz in package.classes)
                 {
+                    string classPath = $@"{actpath} + \ + {clazz.name} +.java";
                     //string pathstring2 = System.IO.Path.Combine(actpath, clazz.name);
                     if (clazz.isInterface)
                     {
-                        //interface
+                        TextWriter tw = new StreamWriter(classPath);
+                        tw.WriteLine($"interface {clazz.name}");
+                        tw.WriteLine("{");
+                        foreach (var method in clazz.methods)
+                        {
+                            tw.WriteLine($"public {method.type} {method.name}({method.args});");
+                        }
+                        tw.WriteLine("}");
                     }
                     else
                     {
-                        string classPath = $@"{actpath} + \ + {clazz.name} +.java";
                         TextWriter tw = new StreamWriter(classPath);
                         tw.WriteLine($"public class {clazz.name}");
                         tw.WriteLine("{");
