@@ -6,31 +6,69 @@
         xmlns:local="clr-namespace:UmlToJava"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" Height="363.6" Width="400">
 
     <Grid Margin="0,0,0,0" AllowDrop="True">
-        <Label Content="Path:" Margin="0,0,347.183,336.73" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="43" Height="28"/>
-        <Button Name="btnExplore" Content="..." Height="28" Width="25" Margin="357,0,0,338.73" VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                AllowDrop="False" Click="BtnExplore_Click"/>
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+
+        </Grid.Resources>
+
+
+        <Label 
+            Content="Package Name" 
+            Margin="10,10,0,0"/>
         <TextBox 
-            Name="txbName" Height="28" Margin="51,56,41.183,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button 
-            Name="btnConvert" Content="Convert" Margin="0,0,10.14,106" 
-            RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Bottom" 
-            HorizontalAlignment="Right" Width="373"
-            AllowDrop="False"/>
-        <TextBlock
-            Name="txblLogs" Margin="10,336,10.14,10" TextWrapping="Wrap" Text="Logs" AllowDrop="False"/>
+            Name="txtPackage"
+            TextWrapping="Wrap" Margin="113,9,0.183,0" Width="280" Height="30" VerticalAlignment="Top"/>
+
+        <Label 
+            Content="Path:" 
+            Margin="0,56,347.183,0"
+            Width="43"/>
+        <TextBox 
+            Name="txbName"
+            Margin="53,56,60.183,248.748"
+            TextWrapping="Wrap"
+            Width="280"/>
+
+        <Button Name="btnExplore"
+                Content="..."
+                Width="25" 
+                Margin="351,56,0,0"
+                Click="BtnExplore_Click"/>
+
         <TextBlock 
             AllowDrop="True"
             Name="txtbDragDrop"
-            Margin="10,110,10.183,154.73"  
+            Margin="10,110,10.183,0"  
             Text="Put your File here"
             Drop="TxtbDragDrop_Drop"
-            DragEnter="TxtbDragDrop_DragEnter"
-    />
-        <Label Content="Package Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox 
-            Name="txtPackage" HorizontalAlignment="Left" Height="23" Margin="96,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="286"/>
+            DragEnter="TxtbDragDrop_DragEnter" Height="61" VerticalAlignment="Top"/>
+
+
+        <Button 
+            Name="btnConvert" Content="Convert" Margin="0,176,10.183,0" 
+            RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Top" 
+            HorizontalAlignment="Right" Width="373"
+            AllowDrop="False"/>
+
+        <TextBlock
+            Name="txblLogs" Margin="10,237,9.183,0" TextWrapping="Wrap" Text="Logs" AllowDrop="False" Height="75" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
