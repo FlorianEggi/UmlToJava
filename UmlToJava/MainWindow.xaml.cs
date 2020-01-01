@@ -35,11 +35,14 @@ namespace UmlToJava
             txbName.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
 
-        
+
         private void TxtbDragDrop_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent("*.graphml"))
-                e.Effects = DragDropEffects.Copy;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                if ((((string[])e.Data.GetData(DataFormats.FileDrop))[0]).Contains(".graphml"))
+                    e.Effects = DragDropEffects.Copy;
+            }
             else
                 e.Effects = DragDropEffects.None;
 
@@ -48,23 +51,38 @@ namespace UmlToJava
 
         private void TxtbDragDrop_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent("*.graphml"))
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                if (txtPackage.Text.Equals(""))
+                if ((((string[])e.Data.GetData(DataFormats.FileDrop))[0]).EndsWith(".graphml"))
                 {
-                    var fileNameArr = filenames[0].Split('\\');
-                    txtPackage.Text = fileNameArr[fileNameArr.Length - 1].Substring(0, fileNameArr[fileNameArr.Length - 1].Length - 8);
-                }
+                    string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                //txtContent.Text = File.ReadAllText(filenames[0]);
+                    if (txtPackage.Text.Equals(""))
+                    {
+                        var fileNameArr = filenames[0].Split('\\');
+                        txtPackage.Text = fileNameArr[fileNameArr.Length - 1].Substring(0, fileNameArr[fileNameArr.Length - 1].Length - 8);
+                    }
+
+                    DoSomethingWithFile(filenames[0]);
+
+                }
+                else LogMessage("Falsches Format! (*.graphml)");
+
+               
+               
 
 
             }
-            
+
         }
 
+      
+
+        private void LogMessage(string v)
+        {
+            txblLogs.Text = v;
+        }
 
         private void BtnExplore_Click(object sender, RoutedEventArgs e)
         {
@@ -75,6 +93,42 @@ namespace UmlToJava
                 txbName.Text = fbd.SelectedPath;
             }
         }
+
+        private void TxtbDragDrop_Click(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "graphml",
+                Filter = "graphml files (*.graphml)|*.graphml",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog().Value)
+            {
+                if (openFileDialog1.FileName.EndsWith(".graphml"))
+                    DoSomethingWithFile(openFileDialog1.FileName);
+                else LogMessage("Falsches Format!(*.graphml)");
+            }
+        }
+
+        private void DoSomethingWithFile(string v)
+        {
+            txtbDragDrop.Text = v;
+
+
+
+            //var c = File.ReadAllText(v);
+        }
+
+      
     }
 }
 
