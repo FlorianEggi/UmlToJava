@@ -23,6 +23,7 @@ namespace UmlToJava
     /// </summary>
     public partial class MainWindow : Window
     {
+        string fileName = "";
         public MainWindow() => InitializeComponent();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -57,27 +58,26 @@ namespace UmlToJava
                 if ((((string[])e.Data.GetData(DataFormats.FileDrop))[0]).EndsWith(".graphml"))
                 {
                     string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop);
+                    fileName = filenames[0];
+                    FileChosen();
 
-                    if (txtPackage.Text.Equals(""))
-                    {
-                        var fileNameArr = filenames[0].Split('\\');
-                        txtPackage.Text = fileNameArr[fileNameArr.Length - 1].Substring(0, fileNameArr[fileNameArr.Length - 1].Length - 8);
-                    }
-
-                    DoSomethingWithFile(filenames[0]);
-
+                   
                 }
                 else LogMessage("Falsches Format! (*.graphml)");
-
-               
-               
-
-
             }
-
         }
 
-      
+        private void FileChosen()
+        {
+
+            txtbDragDrop.Text = fileName;
+
+            if (txtPackage.Text.Equals(""))
+            {
+                var fileNameArr = fileName.Split('\\');
+                txtPackage.Text = fileNameArr[fileNameArr.Length - 1].Substring(0, fileNameArr[fileNameArr.Length - 1].Length - 8);
+            }
+        }
 
         private void LogMessage(string v)
         {
@@ -114,21 +114,46 @@ namespace UmlToJava
             if (openFileDialog1.ShowDialog().Value)
             {
                 if (openFileDialog1.FileName.EndsWith(".graphml"))
-                    DoSomethingWithFile(openFileDialog1.FileName);
+                {
+                    fileName = openFileDialog1.FileName;
+                    FileChosen();
+                }
                 else LogMessage("Falsches Format!(*.graphml)");
             }
         }
 
-        private void DoSomethingWithFile(string v)
+        private bool CheckIfConvertable()
         {
-            txtbDragDrop.Text = v;
-
-
-
-            //var c = File.ReadAllText(v);
+            if (fileName.Equals("")) LogMessage("Keine Datei ausgewählt");
+            else
+            {
+                if (txtPackage.Text.Equals("")) LogMessage("Kein Projektordnername ausgewählt");
+                else return true;
+            }
+            return false;
         }
 
-      
+        private void BtnConvert_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (CheckIfConvertable())
+            {
+                //fileName ist der Pfad zum .graphml file
+
+                //Zum Lesen vom File:
+                //var text = File.ReadAllText(fileName);
+
+                //Zum Fehlermeldungen ausgeben gibts die Methode LogMessage
+
+
+
+
+                //Wenn erfolgreich erstellt:
+                txblLogs.Foreground = new SolidColorBrush(Colors.Green);
+                txblLogs.Text = "Projektordner erfolgreich erstellt!";
+            }
+
+
+        }
     }
 }
 
