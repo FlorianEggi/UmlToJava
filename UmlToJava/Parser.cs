@@ -26,7 +26,10 @@ namespace UmlToJava
             string[] lines = ReadXmlFile();
             for (int i = 0; i < lines.Length; i++)
             {
-                if(lines[i].Contains("AttributeLabel")) Console.WriteLine(lines[i]);
+                if (lines[i].Contains("<y:AttributeLabel")) 
+                { 
+                    currentClazz.parameters.add();
+                };
             }
             return packages;
         }
