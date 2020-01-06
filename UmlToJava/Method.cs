@@ -7,7 +7,7 @@ public class Method
     public List <Parameter> args { get; set; }
     public string name { get; set; }
   
-    public Method(string type, string name, string[] args)
+    public Method(string type, string name, List<Parameter> args)
     {
         this.type = type;
         this.name = name;

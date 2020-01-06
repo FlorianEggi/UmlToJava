@@ -55,7 +55,7 @@ namespace UmlToJava
                             {
                                 lines[i + counter] = lines[i + counter].Substring(lines[i + counter].IndexOf(">"));
                             }
-                            String[] sar = lines[i + counter].Split(",");
+                            String[] sar = lines[i + counter].Split(',');
                         foreach (String s in sar)
                         {
                             if (s != "")
@@ -85,9 +85,9 @@ namespace UmlToJava
                             {
                                 lines[i + counter] = lines[i + counter].Substring(lines[i + counter].IndexOf(">"));
                             }
-                            String[] sar = lines[i + counter].Split(":");
+                            String[] sar = lines[i + counter].Split(':');
                             if (sar[1].Contains("</y:AttributeLabel")) sar[1].Replace("</y:AttributeLabel>", "");
-                            String[] x = sar[0].Split("=");
+                            String[] x = sar[0].Split('=');
                             currentClazz.parameters.Add(new Parameter(sar[1], x[0], x[1]));
                         }
                         else if (lines[i+counter].Contains(":"))
@@ -99,7 +99,7 @@ namespace UmlToJava
                             {
                                 lines[i + counter] = lines[i + counter].Substring(lines[i + counter].IndexOf(">"));
                             }
-                            String[] sar = lines[i + counter].Split(":");
+                            String[] sar = lines[i + counter].Split(':');
                             if(sar[1].Contains("</y:AttributeLabel")) sar[1].Replace("</y:AttributeLabel>", "");
                             currentClazz.parameters.Add(new Parameter(sar[1], sar[0]));
                         }
@@ -127,11 +127,11 @@ namespace UmlToJava
                             String returnType = lines[i + counter].Substring(lines[i + counter].LastIndexOf(":"));
                             if (returnType.Contains("</y:MethodLabel")) returnType.Replace("</y:MethodLabel>", "");
                             String args = lines[i + counter].Substring(lines[i + counter].IndexOf("("), lines[i + counter].IndexOf(")"));
-                            String[] argsArr = args.Split(",");
+                            String[] argsArr = args.Split(',');
                             List<Parameter> paraList = new List<Parameter>();
                             foreach (String x in argsArr)
                             {
-                                String[] sArr = x.Split(":");
+                                String[] sArr = x.Split(':');
                                 paraList.Add(new Parameter(sArr[1], sArr[0]));
 
                             }
@@ -158,7 +158,8 @@ namespace UmlToJava
             }
             currentPack.classes.Add(currentClazz);
             packages.Add(currentPack);
-            Compiler.Compile(packages, path);
+            MainWindow m = new MainWindow();
+            m.Compile(packages, path);
         }
 
         private string[] ReadXmlFile(String xmlPath)
@@ -168,9 +169,8 @@ namespace UmlToJava
             for (int i = 0; i < lines.Length; i++)
             {
                 Console.WriteLine(lines[i]);
-
-                return lines;
             }
+            return lines;
         }
     }
 }

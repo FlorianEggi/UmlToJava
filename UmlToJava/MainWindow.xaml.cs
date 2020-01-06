@@ -143,9 +143,12 @@ namespace UmlToJava
                 //var text = File.ReadAllText(fileName);
 
                 //Zum Fehlermeldungen ausgeben gibts die Methode LogMessage
+                Parser p = new Parser();
+                var pathForProject = txbName.Text + "\\" + txtPackage.Text;
+                var xmlPath = fileName;
+                p.parse(xmlPath, pathForProject);
 
-
-
+                Directory.CreateDirectory(pathForProject);
 
                 //Wenn erfolgreich erstellt:
                 txblLogs.Foreground = new SolidColorBrush(Colors.Green);
@@ -155,7 +158,7 @@ namespace UmlToJava
 
         }
 
-        public void Compile(Package[] packages, string path)
+        public void Compile(List<Package> packages, string path)
         {
             string actpath;
             foreach (var package in packages)
