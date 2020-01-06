@@ -3,9 +3,9 @@
 public class Method
 {
     public string type { get; set; }
-    public string[] args { get; set; }
+    public List<Parameter> args { get; set; }
     public string name { get; set; }
-    public Method(string type, string name, string[] args)
+    public Method(string type, string name, List<Parameter> args)
 	{
         this.type = type;
         this.name = name;
