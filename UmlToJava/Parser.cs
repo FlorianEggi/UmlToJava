@@ -8,19 +8,14 @@ namespace UmlToJava
     {
         //Schreibt einen Parser, der das graphml-File einliest und in ein sinnvolles Format für die Weiterverarbeitung umwandelt.
         //Kontrolliert dabei die Korrektheit der Eingabe und leitet etwaige Fehler an die GUI weiter.
-        private string xmlPath;
-        public Parser(string xmlPath)
-        {
-            this.xmlPath = xmlPath;
+        
 
-        }
-
-        public List<Package> parse()
+        public void parse(String xmlPath, String path)
         {
             Package currentPack = null;
             Clazz currentClazz = null;
             List<Package> packages = new List<Package>();
-            string[] lines = ReadXmlFile();
+            string[] lines = ReadXmlFile(xmlPath);
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].Contains("fontStyle") || lines[i].Contains("plain") || !lines[i].Contains("hasText"))
@@ -163,10 +158,10 @@ namespace UmlToJava
             }
             currentPack.classes.Add(currentClazz);
             packages.Add(currentPack);
-            return packages;
+            Compiler.Compile(packages, path);
         }
 
-        private string[] ReadXmlFile()
+        private string[] ReadXmlFile(String xmlPath)
         {
             string[] lines = File.ReadAllLines(xmlPath);
 
