@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace UmlToJava
+public class Package
 {
-    class Package
-    {
-        public string name { get; set; }
-        public Clazz[] classes { get; set; }
-        public Package(String name, Clazz[] classes)
-        {
-            this.name = name;
-            this.classes = classes;
-        }
-    }
+    public String name { get; set; }
+    public List<Clazz> classes { get; set; }
+    public Package(String name, List<Clazz> classes)
+	{
+        this.name = name;
+        this.classes = classes;
+	}
 }
