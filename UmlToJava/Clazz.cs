@@ -8,6 +8,7 @@ public class Clazz
     public Boolean isInterface { get; set; }
     public Boolean isEnum { get; set; }
     public List<String> enums { get; set; }
+  
     public Clazz(String name, List<Parameter> parameters, List<Method> methods)
 	{
         this.name = name;

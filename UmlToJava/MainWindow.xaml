@@ -5,8 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UmlToJava"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="270" Width="400">
+
+
+    <Grid Margin="0,0,0,0" AllowDrop="True">
+
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="HoverUnderlineStyle">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                    </Trigger>
+                </Style.Triggers>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+            
+        </Grid.Resources>
+
+        <Label 
+            Content="Projektordnername" 
+            Margin="10,10,0,0"
+            Height="30"/>
+
+        <TextBox 
+            Name="txtPackage"
+            TextWrapping="Wrap" Margin="130,10,10,0" 
+            Height="30" 
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"/>
+
+        <Label 
+            Content="Pfad:" 
+            Margin="10,50,0,0"
+            Width="43"/>
+        <TextBox 
+            Name="txbName"
+            Margin="53,50,50,0"
+            TextWrapping="Wrap" 
+            Height="30" 
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
+
+            />
+
+        <Button Name="btnExplore"
+                Content="..." 
+                Margin="0,50,10.183,0"
+                Click="BtnExplore_Click" HorizontalAlignment="Right" Width="32"/>
+
+        <Border BorderThickness="1" 
+                Margin="10,90,10,0" 
+                Height="60" 
+                VerticalAlignment="Top"
+                Name="brdTxtbDragDrop">
+            
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="LightBlue"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            
+            <TextBlock 
+                Padding="2"
+                AllowDrop="True"
+                Name="txtbDragDrop"
+                Margin="0,0,0,0"  
+                Text="Hier die Datei hereinziehen"
+                Drop="TxtbDragDrop_Drop"
+                DragEnter="TxtbDragDrop_DragEnter" 
+                Height="61" 
+                VerticalAlignment="Center" 
+                PreviewMouseDown="TxtbDragDrop_Click" 
+                />
+        </Border>
+
+
+        <Button 
+            Name="btnConvert" Content="Convert" Margin="10,160,10,0" 
+            RenderTransformOrigin="1.369,-1.995" Height="30" VerticalAlignment="Top" 
+            HorizontalAlignment="Stretch"
+            AllowDrop="False" Click="BtnConvert_Clicked"/>
+
+        <TextBlock
+            Name="txblLogs" 
+            Margin="10,200,10.183,0" 
+            TextWrapping="Wrap" 
+            AllowDrop="False" Height="30" VerticalAlignment="Top" Foreground="Red"/>
+
     </Grid>
 </Window>
